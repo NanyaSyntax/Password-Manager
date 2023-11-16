@@ -16,15 +16,21 @@ namespace NanyaPasswordManager.Core.Services.Implementations
 
         public async Task<PasswordManager> AddPasswordAsync(PasswordManager password)
         {
-            var addedPassword = _passwordManager.AddPassword(password);
-
-            if (addedPassword == null)
+            try
             {
-                throw new ArgumentException("An input must be made");
-            }
+                var addedPassword = await _passwordManager.AddPassword(password);
 
-            return await addedPassword;
-        }   
+                if (addedPassword == null)
+                {
+                    throw new ArgumentException("An input must be made");
+                }
+                return addedPassword;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception ($"An error occurred while adding the password: {ex.Message}");
+            }
+        }
 
         public async Task<IEnumerable<PasswordManager>> DeleteAllPasswordAsync()
         {
@@ -65,28 +71,63 @@ namespace NanyaPasswordManager.Core.Services.Implementations
 
         public async Task<IEnumerable<PasswordManager>> GetAllPasswordAsync()
         {
-            var allPasswords = await _passwordManager.GetAllPassword();
-
-            if (allPasswords != null)
+            try
             {
-                _passwordManager.GetAllPassword();
+                var allPasswords = await _passwordManager.GetAllPassword();
+
+                if (allPasswords != null)
+                {
+                    await _passwordManager.GetAllPassword();
+                }
+
+                return  allPasswords.ToList();
+
             }
-
-            return allPasswords.ToList();
-
-            throw new NotImplementedException($"An error occured while getting all passwords: {ex.Message}");
+            catch (Exception ex)
+            {
+                   throw new NotImplementedException($"An error occured while getting all passwords: {ex.Message}");
+            }
         }
 
 
-        public Task<PasswordManager> GetPasswordByIdAsync(string id)
+        public async Task<PasswordManager> GetPasswordByIdAsync(string id)
         {
-            throw new NotImplementedException();
-        }
-        public Task<PasswordManager> UpdatePasswordAsync(string id, PasswordManager password)
-        {
-            throw new NotImplementedException();
+            try
+            {
+                var existingPassword = _passwordManager.GetPasswordById(id);
+                if (existingPassword != null)
+                {
+                    await _passwordManager.GetPasswordById(id);
+                }
+                return await existingPassword;
+
+            }
+            catch (Exception ex)
+            {
+                throw new ArgumentException($" An error occured while getting password{ex.Message}");
+
+            }
         }
 
+        public async Task<PasswordManager> UpdatePasswordAsync(string id, PasswordManager password)
+        {
+            try
+            {
+                // Find the existing password by its ID
+                var existingPassword = await _passwordManager.GetPasswordById(id);
+
+                if (existingPassword != null)
+                {
+                    await _passwordManager.UpdatePassword(id, existingPassword);                }
+
+                return existingPassword;
+            }
+            catch (Exception ex)
+            {
+                throw new ArgumentException($"An error occurred while updating the password: {ex.Message}");
+                
+            }
+        }
 
     }
         
