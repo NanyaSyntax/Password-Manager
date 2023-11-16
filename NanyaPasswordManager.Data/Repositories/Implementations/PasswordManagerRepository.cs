@@ -12,10 +12,11 @@ namespace NanyaPasswordManager.Data.Repositories.Implementations
         {
             _context = context;
         }
-        public async void AddPassword(PasswordManager password)
+        public async Task<PasswordManager> AddPassword(PasswordManager password)
         {
             _context.passwordManagers.Add(password);
             await _context.SaveChangesAsync();
+            return password;
         }
 
         public async void DeletePassword(PasswordManager password)

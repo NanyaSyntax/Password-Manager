@@ -15,11 +15,13 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<NanyaPwdMngrDbContext>(options =>
       options.UseSqlServer(builder.Configuration.GetConnectionString("PasswordManagerCS")));
 
-
-var app = builder.Build();
 builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<NanyaPwdMngrDbContext>()
                 .AddDefaultTokenProviders();
+
+
+var app = builder.Build();
+
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

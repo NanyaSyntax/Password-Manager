@@ -1223,6 +1223,20 @@
           }
         }
       },
+      "NanyaPasswordManager.Core/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v7.0",
+        "dependencies": {
+          "NanyaPasswordManager.Data": "1.0.0",
+          "NanyaPasswordManager.Model": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/NanyaPasswordManager.Core.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/NanyaPasswordManager.Core.dll": {}
+        }
+      },
       "NanyaPasswordManager.Data/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v7.0",
@@ -3503,6 +3517,11 @@
         "useSharedDesignerContext.txt"
       ]
     },
+    "NanyaPasswordManager.Core/1.0.0": {
+      "type": "project",
+      "path": "../NanyaPasswordManager.Core/NanyaPasswordManager.Core.csproj",
+      "msbuildProject": "../NanyaPasswordManager.Core/NanyaPasswordManager.Core.csproj"
+    },
     "NanyaPasswordManager.Data/1.0.0": {
       "type": "project",
       "path": "../NanyaPasswordManager.Data/NanyaPasswordManager.Data.csproj",
@@ -3520,6 +3539,7 @@
       "Microsoft.EntityFrameworkCore.Design >= 7.0.12",
       "Microsoft.EntityFrameworkCore.SqlServer >= 7.0.12",
       "Microsoft.EntityFrameworkCore.Tools >= 7.0.12",
+      "NanyaPasswordManager.Core >= 1.0.0",
       "NanyaPasswordManager.Data >= 1.0.0",
       "Swashbuckle.AspNetCore >= 6.5.0"
     ]
@@ -3558,6 +3578,9 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "projectReferences": {
+            "C:\\Users\\user\\Documents\\projects\\PasswordMgr\\Password-Manager\\NanyaPasswordManager.Core\\NanyaPasswordManager.Core.csproj": {
+              "projectPath": "C:\\Users\\user\\Documents\\projects\\PasswordMgr\\Password-Manager\\NanyaPasswordManager.Core\\NanyaPasswordManager.Core.csproj"
+            },
             "C:\\Users\\user\\Documents\\projects\\PasswordMgr\\Password-Manager\\NanyaPasswordManager.Data\\NanyaPasswordManager.Data.csproj": {
               "projectPath": "C:\\Users\\user\\Documents\\projects\\PasswordMgr\\Password-Manager\\NanyaPasswordManager.Data\\NanyaPasswordManager.Data.csproj"
             }
