@@ -1,6 +1,10 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using NanyaPasswordManager.Core.Services.Implementations;
+using NanyaPasswordManager.Core.Services.Interfaces;
 using NanyaPasswordManager.Data;
+using NanyaPasswordManager.Data.Repositories.Implementations;
+using NanyaPasswordManager.Data.Repositories.Interfaces;
 using NanyaPasswordManager.Model;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -18,6 +22,10 @@ builder.Services.AddDbContext<NanyaPwdMngrDbContext>(options =>
 builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<NanyaPwdMngrDbContext>()
                 .AddDefaultTokenProviders();
+builder.Services.AddScoped<IPasswordManagerService, PasswordManagerService>();
+builder.Services.AddScoped<IPasswordManagerRepository, PasswordManagerRepository>();
+builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<IUserRepository, UserRepository>();
 
 
 var app = builder.Build();

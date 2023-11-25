@@ -12,13 +12,14 @@ namespace NanyaPasswordManager.Core.DTO
         [Required]
         public string Website { get; set; }
         public string Username { get; set; } = string.Empty;
+        public string UserId { get; set; }
 
         [EmailAddress]
         public string Email { get; set; }
 
         [Required]
         [DataType(DataType.Password)]
-        public string Password { get; set; }    
+        public string WebsitePassword { get; set; }    
 
     }
 }

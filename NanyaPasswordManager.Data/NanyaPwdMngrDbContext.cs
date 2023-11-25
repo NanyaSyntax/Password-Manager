@@ -10,6 +10,7 @@ namespace NanyaPasswordManager.Data
         {
         }
 
-        public DbSet<PasswordManager> passwordManagers { get; set; }
+        public DbSet<Password> UserPasswords { get; set; }
+
     }
 }

@@ -12,47 +12,34 @@ namespace NanyaPasswordManager.Data.Repositories.Implementations
         {
             _context = context;
         }
-        public async Task<PasswordManager> AddPassword(PasswordManager password)
+        public async Task<bool> AddPassword(Password password)
         {
-            _context.passwordManagers.Add(password);
-            await _context.SaveChangesAsync();
-            return password;
+            _context.UserPasswords.Add(password);
+            return await SaveChanges();
+        }
+        public async Task<bool> DeletePassword(Password password)
+        {
+            _context.UserPasswords.Remove(password);
+            return await SaveChanges();
+        }
+        public async Task<bool> DeleteAllPassword()
+        {
+            _context.UserPasswords.RemoveRange();
+            return await SaveChanges();
+        }
+        public async Task<IEnumerable<Password>> GetAllPassword() =>  await _context.UserPasswords.ToListAsync();
+
+        public async Task<Password> GetPasswordById(string Id) => await _context.UserPasswords.FindAsync(Id);
+
+        public async Task<bool> UpdatePassword(Password password)
+        {
+            _context.Update(password);
+            return await SaveChanges();
         }
 
-        public async void DeletePassword(PasswordManager password)
-        {
-            _context.passwordManagers.Remove(password);
-            await _context.SaveChangesAsync();
-            
-        }
+        private async Task<bool> SaveChanges() => await _context.SaveChangesAsync()>0;
+        
 
-        public async Task<IEnumerable<PasswordManager>> DeleteAllPassword()
-        {
-            _context.passwordManagers.RemoveRange();
-            await _context.SaveChangesAsync();
-            return await _context.passwordManagers.ToListAsync();
-        }
-
-        public async Task<IEnumerable<PasswordManager>> GetAllPassword()
-        {
-            return await _context.passwordManagers.ToListAsync();
-        }
-
-        public async Task<PasswordManager> GetPasswordById(string Id)
-        {
-            return await _context.passwordManagers.FindAsync(Id);
-            
-        }
-
-        public async Task<PasswordManager> UpdatePassword(string Id,PasswordManager password)
-        {
-            var passwordUpdate = await _context.passwordManagers.FindAsync(Id);
-            await _context.SaveChangesAsync();
-            return passwordUpdate;
-        }
-
-       
-
-      
+        
     }
 }

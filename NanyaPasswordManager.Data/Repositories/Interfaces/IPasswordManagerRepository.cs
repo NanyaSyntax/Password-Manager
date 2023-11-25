@@ -4,12 +4,12 @@ namespace NanyaPasswordManager.Data.Repositories.Interfaces
 {
     public interface IPasswordManagerRepository
     {
-        Task<PasswordManager> AddPassword(PasswordManager password);
-        Task<PasswordManager> GetPasswordById(string Id);
-        Task<IEnumerable<PasswordManager>> GetAllPassword();
-        Task<IEnumerable<PasswordManager>> DeleteAllPassword();
-        void DeletePassword(PasswordManager password);
-        Task<PasswordManager> UpdatePassword(string Id, PasswordManager password);
+        Task<bool> AddPassword(Password password);
+        Task<Password> GetPasswordById(string Id);
+        Task<IEnumerable<Password>> GetAllPassword();
+        Task<bool> DeleteAllPassword();
+        Task<bool> DeletePassword(Password password);
+        Task<bool> UpdatePassword(Password password);
 
     }
 }
