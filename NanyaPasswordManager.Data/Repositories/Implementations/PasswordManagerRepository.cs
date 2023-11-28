@@ -29,7 +29,7 @@ namespace NanyaPasswordManager.Data.Repositories.Implementations
         }
         public async Task<IEnumerable<Password>> GetAllPassword() =>  await _context.UserPasswords.ToListAsync();
 
-        public async Task<Password> GetPasswordById(string Id) => await _context.UserPasswords.FindAsync(Id);
+        public async Task<Password> GetPasswordById(string Id) => await _context.UserPasswords.FirstOrDefaultAsync(x=>x.Id == Id);
 
         public async Task<bool> UpdatePassword(Password password)
         {

@@ -22,16 +22,14 @@ namespace NanyaPasswordManager.Core.Services.Implementations
             {
                 return $" User with {uniqueEmail} already Exists:";
             }
-
+            
             var newUser = new ApplicationUser
             {
                 FirstName = userRequestDto.FirstName,
                 LastName = userRequestDto.LastName,
                 Email = userRequestDto.Email,
                 UserName = userRequestDto.UserName,
-
             };        
-
             try
             {
                 var response = await _userManager.CreateAsync(newUser, userRequestDto.Password);

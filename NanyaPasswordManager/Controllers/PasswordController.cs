@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using NanyaPasswordManager.Core.DTO;
 using NanyaPasswordManager.Core.Services.Interfaces;
+using NanyaPasswordManager.Model;
 
 namespace NanyaPasswordManager.Controllers
 {
@@ -19,8 +20,8 @@ namespace NanyaPasswordManager.Controllers
         public async Task<IActionResult> AddPassword ([FromBody] PasswordRequestDto passwordRequestDto) 
                                          => Ok(await _passwordManagerService.AddPasswordAsync(passwordRequestDto));
 
-        //[HttpPut("UpdatePassword")]
-        //public async Task<IActionResult> UpdatePassword(  string id, [FromBody] Password password) => Ok(await _passwordManagerService.UpdatePasswordAsync(id, password));
+        [HttpPut("UpdatePassword")]
+        public async Task<IActionResult> UpdatePassword([FromBody] UpdatePasswordDto password, string id) => Ok(await _passwordManagerService.UpdatePasswordAsync(id, password));
 
         //[HttpGet("GetPasswordById")]
         //public async Task<IActionResult> GetPasswordById(string id) => Ok(await _passwordManagerService.GetPasswordByIdAsync(id));
